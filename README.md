@@ -8,10 +8,12 @@ What we will learn in this section??
 
 ## 226. Another Look At State In React Apps
 
-Q: What is redux?
+### Q: What is redux?
+
 A: Redux is a state-management-system for cross-component or app-wide state .
 
-Q: What is Cross-component / App-wide state ?
+### Q: What is Cross-component / App-wide state ?
+
 A: Look state could be of three types
 
 1. Local state.-->
