@@ -23,6 +23,8 @@ A: Look state could be of three types
 2. Cross-component State.-->
    1. State that affects multiple components.
    2. E.g. open/ close the state of a modal overlay.
-   3. Requires "prop chains" / "prop drilling"
+   3. Requires "prop chains" / "prop drilling" OR (reactcontext or reducer)
 3. App-wide state.-->
-   1.
+   1. State that affects the entire app (most / all components).
+   2. E.g. user authentecation status.
+   3. Requires "prop chains" / "prop drilling" OR (reactcontext or reducer)
