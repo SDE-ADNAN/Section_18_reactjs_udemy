@@ -91,3 +91,20 @@ Conclusion:
 
 1. In more complex apps, managing React Context can lead to deeply nested JSX code and / or huge "Context Provider" Components.
 2. React Context is not optimized for high frequency state changes.
+
+---
+
+## 228 : How Redux works
+
+1. In redux you have only one data store , here data means state, this central state is accessible by all the components inside the application where ever it is needed.
+2. All the components in an application where data is managed by redux share the subscriptio with the store due to which , whenever some data inside the store changes the component which is dependant on that data gets notified and may mutate accordingly.
+3. For changing this state which we got from the store , One thing which is most imp to consider is that "components never ever change the redux store state directly".
+4. For changing that redux store state we use the conncept of reducers (Reducer functions). This reducer function are responsible for the state mutations in the redux store. Here by saying reducer we dont mean the "useReducer()" hook , instead reducers are a general concept.
+5. Reducers generally are functions which take an input and spit out a proccessed output .
+6. For letting the store know that component needs to mutate/change a piece of store's state the component dispatches an action to the store for changing the state . And at the end the components receive the updated state .
+7. and this dispatching is done through a dispatch function which takes the data to mutate the state and communicates to the store for the demand of changing that particular state.
+8. the path of a state update using redux concepts is : components dispatch actions stating that what and how should update --> then this action reaches the reducer function . --> then inside the reducer function the main processing is done --> then lastly the state at the redux store gets updated --> and as a result which ever components are subscribed to this store's state gets the latest state immidiately.
+
+---
+
+---
