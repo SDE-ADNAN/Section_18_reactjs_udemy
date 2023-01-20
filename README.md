@@ -120,3 +120,9 @@ You should ignore this warning!
 You can still use <strong style="color:yellow">.createStore()</strong> without issues.
 
 Indeed, the React Redux team now recommends the usage of an extra package called Redux Toolkit and another way of creating the Redux store. That package will indeed be covered a little bit later in the course as well. But by first diving into <strong style="color:yellow">.createStore()</strong> and the next lectures, you'll learn how Redux works and what it does. This is some crucial knowledge that's required no matter if you're then using Redux Toolkit (as mentioned: Covered later as well) or not!
+
+---
+
+---
+
+## 230 : Exploring The Core Redux Concepts.
