@@ -126,3 +126,13 @@ Indeed, the React Redux team now recommends the usage of an extra package called
 ---
 
 ## 230 : Exploring The Core Redux Concepts.
+
+1. It is not necessary to use redux along with react or any other js library , it could be used singlehandedly as redux is designed to handle data and app state.
+2. For installing redux we need to run the below command :
+
+```shell
+npm install redux
+```
+
+3. Redux has a predefined function "redux.createStore()" which is used to initialize the store that redux manages for us and hence it is the main part of the whole application we generally start with store .
+4.
