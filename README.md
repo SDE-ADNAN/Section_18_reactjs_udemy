@@ -135,4 +135,33 @@ npm install redux
 ```
 
 3. Redux has a predefined function "redux.createStore()" which is used to initialize the store that redux manages for us and hence it is the main part of the whole application we generally start with store .
-4.
+4. This createStore() function is responsible for setting the initial state of the application so that data starts to flow into the application and avoid null referrance error.
+5. we also use some reducer functions to handle the actions and process the action types when they are called . these reducers recieve two parameters 1. the "old State" along with the action which we decide while calling the reducer func. And these reducer functions are automatically called by redux to manage the store state.
+6. after processing the store state update procedure asper the action passed while invoking the reducer function these reducers spit-out new state object.
+7. one thing to remember about the reducer function is that it must be a pure function which means it must not contain any side effects inside its body. E.g. you must not make a http api call , set some data into the local storage , you should not get any data to the local storage.
+8. Reducer must only get the input provided by redux and return a new proccessed state object which is expected by redux. and nothing other than that.
+9. <strong>"which in straightly mean for same input it must give same output "</strong>
+10. simple counter reducer:
+
+```js
+// here we are assigning state parameter a default value when theres no value at the initial load
+// att that time this {counter : 0} is defaultly passed to the counterReducer function.
+const counterReducer = (state = { counter: 0 }, action) => {
+  return {
+    counter: state.counter + 1,
+  };
+};
+
+// here we are using the redux.createStore() to make a store for managing the store state.
+const store = redux.createStore(counterReducer);
+
+const counterSubscriber = () => {
+  const latestStore = store.getState(); // this gives the latest state snapshot when ever it is called using the store.
+  console.log(latestStore);
+};
+
+store.subscribe(counterSubscriber); // here we are not calling the counterSubscriber function as it is handled by redux when ever redux needs that this counterSubscribe must be called.
+
+// over here the type attrr in the dispatch function is  a unique identifier that differs all the action types for all listed ones.
+store.dispatch({ type: "increment" });
+```
