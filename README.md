@@ -165,3 +165,9 @@ store.subscribe(counterSubscriber); // here we are not calling the counterSubscr
 // over here the type attrr in the dispatch function is  a unique identifier that differs all the action types for all listed ones.
 store.dispatch({ type: "increment" });
 ```
+
+---
+
+---
+
+##
