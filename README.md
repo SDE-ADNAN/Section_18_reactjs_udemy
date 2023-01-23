@@ -206,3 +206,15 @@ store.dispatch({ type: "increment" });
 // below here we are passing the action.type as decrement and this will decrease the state.counter value by 1.
 store.dispatch({ type: "decrement" });
 ```
+
+---
+
+---
+
+## 232 : Prepraing a new project
+
+we installed redux for react using the below command
+
+```shell
+npm install redux react-redux
+```
