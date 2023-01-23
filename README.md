@@ -170,4 +170,39 @@ store.dispatch({ type: "increment" });
 
 ---
 
-##
+## 231 : More redux basics
+
+1. Typically when using redux the main goal is to do different things inside of the reducer for different actions ; and that's why we also get the action as a second parameter inside of our reducer function.
+2. So in our example of the counter we can differentiate the actions of increment and decrement and can do things as per that , and the code is given below:
+
+```js
+// here we are assigning state parameter a default value when theres no value at the initial load
+// att that time this {counter : 0} is defaultly passed to the counterReducer function.
+const counterReducer = (state = { counter: 0 }, action) => {
+  if (action.type === "increment") {
+    return {
+      counter: state.counter + 1,
+    };
+  } else if (action.type === "decrement") {
+    return {
+      counter: state.counter - 1,
+    };
+  }
+};
+
+// here we are using the redux.createStore() to make a store for managing the store state.
+const store = redux.createStore(counterReducer);
+
+const counterSubscriber = () => {
+  const latestStore = store.getState(); // this gives the latest state snapshot when ever it is called using the store.
+  console.log(latestStore);
+};
+
+store.subscribe(counterSubscriber); // here we are not calling the counterSubscriber function as it is handled by redux when ever redux needs that this counterSubscribe must be called.
+
+// over here the type attrr in the dispatch function is  a unique identifier that differs all the action types for all listed ones.
+store.dispatch({ type: "increment" });
+
+// below here we are passing the action.type as decrement and this will decrease the state.counter value by 1.
+store.dispatch({ type: "decrement" });
+```
