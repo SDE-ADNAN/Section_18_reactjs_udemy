@@ -218,3 +218,40 @@ we installed redux for react using the below command
 ```shell
 npm install redux react-redux
 ```
+
+---
+
+---
+
+## 233 : Creating a Redux store for React
+
+1. Created the store folder next to the components for creating the store and using redux.
+2. Inside the store folder we have the index.js file inside the index.js we have the store defined with the counterReducer and the initial state and exported that store as a default export so that we can use that store elsewhere in our project.
+
+code for the store :
+
+```js
+import { createStore } from "react-redux";
+
+const counterReducer = (state = { counter: 0 }, action) => {
+  if (action.type === "increment") {
+    return {
+      counter: state.counter + 1,
+    };
+  }
+  if (action.type === "decrement") {
+    return {
+      counter: state.counter - 1,
+    };
+  }
+  return state;
+};
+
+const store = createStore(counterReducer);
+
+export default store;
+```
+
+---
+
+---
