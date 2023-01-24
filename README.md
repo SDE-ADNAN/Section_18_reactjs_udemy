@@ -255,3 +255,31 @@ export default store;
 ---
 
 ---
+
+## 234 : Providing the store.
+
+1. for accessing the store state we are required to provide our store to the components in which we are planning to use this state.
+2. and also we can use this provider component anywhere inside the app and as many times as we like.
+3. but keep in mind that only the wrapped components will receive the store state.
+
+code:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+
+import "./index.css";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <Provider>
+    <App />
+  </Provider>
+);
+```
+
+---
+
+---
