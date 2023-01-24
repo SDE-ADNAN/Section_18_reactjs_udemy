@@ -261,6 +261,8 @@ export default store;
 1. for accessing the store state we are required to provide our store to the components in which we are planning to use this state.
 2. and also we can use this provider component anywhere inside the app and as many times as we like.
 3. but keep in mind that only the wrapped components will receive the store state.
+4. only after using the provider wrapper to wrap our app redux will not automatically know .
+5. so for that we pass the store as a prop to the provider.
 
 code:
 
@@ -271,10 +273,11 @@ import { Provider } from "react-redux";
 
 import "./index.css";
 import App from "./App";
+import store from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider>
+  <Provider store={store}>
     <App />
   </Provider>
 );
