@@ -292,3 +292,29 @@ root.render(
 1. For using the redux store's data we are supposed to use the useSelector() hook created by the react-redux team for to use the store data in our components.
 2. For using the data from the store we can also use the useStore() hook by the react-redux team which gives u the whole store data once u call that store using this useStore() hook.
 3. On the other hand the useSelector() is capable of returning only needed parts of the whole store which is benifitial for devs working with enterprise level projects where the store contains thousands of lines of code for managing data of user interaction and all .
+4. I was unable to use the createStore function which is to be comming from the redux library but the issue was that i was trying to use that createStore function via importing it from the react-redux so thats why keep in mind that createStore is imported from the redux library and not from the react-redux.
+5. changes this lines :
+
+```js
+import classes from "./Counter.module.css";
+// used use selector from the react-redux lib
+import { useSelector } from "react-redux";
+
+const Counter = () => {
+  // getting the counter value from the state and gettimg only specific value of counter.
+  const counter = useSelector((state) => state.counter);
+
+  const toggleCounterHandler = () => {};
+
+  return (
+    <main className={classes.counter}>
+      <h1>Redux Counter</h1>
+      {/* Using the counter value for displaying it inthe  UI */}
+      <div className={classes.value}>{counter}</div>
+      <button onClick={toggleCounterHandler}>Toggle Counter</button>
+    </main>
+  );
+};
+
+export default Counter;
+```
