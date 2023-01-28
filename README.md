@@ -286,3 +286,9 @@ root.render(
 ---
 
 ---
+
+## 235 : using redux data in react component ;
+
+1. For using the redux store's data we are supposed to use the useSelector() hook created by the react-redux team for to use the store data in our components.
+2. For using the data from the store we can also use the useStore() hook by the react-redux team which gives u the whole store data once u call that store using this useStore() hook.
+3. On the other hand the useSelector() is capable of returning only needed parts of the whole store which is benifitial for devs working with enterprise level projects where the store contains thousands of lines of code for managing data of user interaction and all .
