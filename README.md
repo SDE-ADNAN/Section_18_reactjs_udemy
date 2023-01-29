@@ -318,3 +318,52 @@ const Counter = () => {
 
 export default Counter;
 ```
+
+---
+
+---
+
+## 236 : Dispatching actions from inside components
+
+1. Added two btns for increment and decrement for using the increment and decrement functionality inside the components.
+2. added the onclick prop with two handlers which will dispatch action once clicked.
+3. for dispatching actions to the redux store we must use the useDispatch hook provided by the react-redux lib.
+
+code for usage of useDispatch hook:
+
+```js
+import classes from "./Counter.module.css";
+import { useDispatch, useSelector } from "react-redux";
+
+const Counter = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+
+  const incrementHandler = () => {
+    dispatch({ type: "increment" });
+  };
+  const decrementHandler = () => {
+    dispatch({ type: "decrement" });
+  };
+
+  const toggleCounterHandler = () => {};
+
+  return (
+    <main className={classes.counter}>
+      <h1>Redux Counter</h1>
+      <div className={classes.value}>{counter}</div>
+      <div>
+        <button onClick={incrementHandler}>Increment</button>
+        <button onClick={decrementHandler}>Decrement</button>
+      </div>
+      <button onClick={toggleCounterHandler}>Toggle Counter</button>
+    </main>
+  );
+};
+
+export default Counter;
+```
+
+---
+---
+
