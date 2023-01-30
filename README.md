@@ -540,3 +540,54 @@ const Counter = () => {
   );
 };
 ```
+
+---
+---
+
+## 239 : Working with multiple state properties.
+
+1. so basically what we did here is that for handling the toggle state for the counter we used the dispatch method and dispatched an action in which we are changing the showCounter redux state inverse of it which was previously present over there inside the redux store.
+
+code:
+```js
+import { createStore } from "redux";
+// import {createStore} from "redux"
+
+
+const initState = { counter: 0, showCounter: true };
+const counterReducer = (state = initState, action) => {
+  if (action.type === "increment") {
+    return {
+      ...state,
+      counter: state.counter + 1,
+      //   showCounter: state.showCounter,
+    };
+  }
+  if (action.type === "increase") {
+    return {
+      ...state,
+      counter: state.counter + action.amount,
+      //   showCounter: state.showCounter,
+    };
+  }
+  if (action.type === "decrement") {
+    return {
+      ...state,
+      counter: state.counter - 1,
+      //   showCounter: state.showCounter,
+    };
+  }
+  if (action.type === "toggle") {
+    return {
+      ...state,
+      //   counter: state.counter,
+      showCounter: !state.showCounter,
+    };
+  }
+  return state;
+};
+
+const store = createStore(counterReducer);
+
+export default store;
+```
