@@ -370,6 +370,44 @@ export default Counter;
 ## 237 : redux with class based Components 
 
 ### How to use the redux store inside a class-component.
+function bases 
+code:
+```js
+import classes from "./Counter.module.css";
+import { useDispatch, useSelector, connect } from "react-redux";
+import { Component } from "react";
+
+const Counter = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+
+  const incrementHandler = () => {
+    dispatch({ type: "increment" });
+  };
+  const decrementHandler = () => {
+    dispatch({ type: "decrement" });
+  };
+
+  const toggleCounterHandler = () => {};
+
+  return (
+    <main className={classes.counter}>
+      <h1>Redux Counter</h1>
+      <div className={classes.value}>{counter}</div>
+      <div>
+        <button onClick={incrementHandler}>Increment</button>
+        <button onClick={decrementHandler}>Decrement</button>
+      </div>
+      <button onClick={toggleCounterHandler}>Toggle Counter</button>
+    </main>
+  );
+};
+
+export default Counter;
+```
+
+
+class based
 code:
 ```js
 import classes from "./Counter.module.css";
@@ -433,4 +471,72 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ---
 ---
 
-## 238 : 
+## 238 : Ataching paylods to actions
+
+1. in this video we are using more complex actions to make more complex changes to the redux store this complex action object can include many attributes as per our needs 
+
+e.g 
+
+code 
+```js
+import { createStore } from "redux";
+// import {createStore} from "redux"
+
+const counterReducer=(state={counter:0},action)=>{
+if(action.type==="increment"){
+    return {
+        counter:state.counter+1,
+    }
+}
+if (action.type === "increase") {
+  return {
+    counter: state.counter + action.amount,
+  };
+}
+if(action.type==="decrement"){
+    return {
+        counter:state.counter-1,
+    }
+}
+return state ;
+}
+
+const store = createStore(counterReducer);
+
+export default store;
+```
+
+Using that increase type :
+
+```js
+
+const Counter = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+
+  const incrementHandler = () => {
+    dispatch({ type: "increment" });
+  };
+  const increaseHandler = () => {
+    dispatch({ type: "increase", amount: 5 });
+  };
+  const decrementHandler = () => {
+    dispatch({ type: "decrement" });
+  };
+
+  const toggleCounterHandler = () => {};
+
+  return (
+    <main className={classes.counter}>
+      <h1>Redux Counter</h1>
+      <div className={classes.value}>{counter}</div>
+      <div>
+        <button onClick={incrementHandler}>Increment</button>
+        <button onClick={decrementHandler}>Decrement</button>
+        <button onClick={increaseHandler}>Increase by 5</button>
+      </div>
+      <button onClick={toggleCounterHandler}>Toggle Counter</button>
+    </main>
+  );
+};
+```
