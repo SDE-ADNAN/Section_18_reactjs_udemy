@@ -591,3 +591,16 @@ const store = createStore(counterReducer);
 
 export default store;
 ```
+
+---
+---
+
+## 240 : How to work with redux state properly.
+
+1. while working with redux state we must keep in mind that the reducer functions 
+always replace/overwrite the previous state inside the store so we must handle each reducers store state update with precioson or else we will loose the  whole state.
+2. <strong>we must never mutate the redux state directly inside a reducer</strong> like incrementing any value outside the return statement. we must always keep in mind that we are not mutating the state inside the body of the reducer function.
+3. as objects and arrys are reference types in js everytime theres chance that we may accidentally change a previously stored state.
+4. you could watch this video of maximillian explaining about objects and arrays being reference values in js.
+https://academind.com/tutorials/reference-vs-primitive-values
+5. for being on the safer side while updating redux state data we must always return a new state which can be derived from the previous state. Always copy and create new arrays and objects when ever needed.
