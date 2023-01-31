@@ -604,3 +604,23 @@ always replace/overwrite the previous state inside the store so we must handle e
 4. you could watch this video of maximillian explaining about objects and arrays being reference values in js.
 https://academind.com/tutorials/reference-vs-primitive-values
 5. for being on the safer side while updating redux state data we must always return a new state which can be derived from the previous state. Always copy and create new arrays and objects when ever needed.
+
+---
+---
+
+## 241 : Redux challenges and introducing "redux toolkit"
+
+1. the more complex our app gets, it gets more and more complex for us to manage redux state.
+2. the above videos were about building the foundation for using redux and setting it up but from now on we will be doing a simpler setup for redux store using redux toolkit.
+3. so the problems which we face while using redux for complex and bigger state of complex applications.
+  1. the first issue is that we have types in our actions and if you accidentally misspell any of the action types then the redux reducer will not process that request of changing that state. it can be a problem once our application becomes bigger and has too many action types after which we could mistakenly call any other type which is simillar in spelling but not in functionality.
+  2. Second big problem is that the amount of data we manage will directly increase the state object and which will inturn increase the reducer function as we have to consider the whole state while we update it.
+  3. anoter problem is the <strong> state immutability </strong> as we have to keep in consideration that we always return a brand new state snapshot and not accidentally change the existing state. and if we change the existing state it will lead to bigger problems while making a scallable application.
+
+
+---
+---
+
+## 242 : Adding State Slices
+
+1. 
