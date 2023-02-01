@@ -1,9 +1,9 @@
-import { createStore } from "redux";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initState = { counter: 0, showCounter: true };
 
-createSlice({
+// we need to store the returned value of createSlice function
+const counterSlice = createSlice({
   // the unique name of the slice as we can have as many slices as we want in an applications.
   name: "counter",
   // this below is the initial state which will be a blueprint for the further states.
@@ -33,8 +33,6 @@ createSlice({
     },
   },
 });
-
-
 
 const counterReducer = (state = initState, action) => {
   if (action.type === "increment") {
@@ -68,6 +66,8 @@ const counterReducer = (state = initState, action) => {
   return state;
 };
 
-const store = createStore(counterReducer);
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
 
 export default store;
