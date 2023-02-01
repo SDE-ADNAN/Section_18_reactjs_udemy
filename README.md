@@ -631,10 +631,8 @@ npm install @reduxjs/toolkit
 3. for using the redux toolkit we use the createSlice method which ships with the redux toolkit package.
 code:
 ```js
-// WITH REDUX TOOLKIT (ALONG WITH IMMER)
-const initState = { counter: 0, showCounter: true };
-
-createSlice({
+// we need to store the returned value of createSlice function 
+const counterSlice = createSlice({
   // the unique name of the slice as we can have as many slices as we want in an applications.
   name: "counter",
   // this below is the initial state which will be a blueprint for the further states.
@@ -664,6 +662,7 @@ createSlice({
     },
   },
 });
+
 ///////////////////////////////////////////////////////////////////////////////
 
 // WITH REDUX
@@ -702,3 +701,33 @@ const counterReducer = (state = initState, action) => {
 
 ---
 ---
+
+## 243 : connecting redux toolkit state.
+
+1. for connecting the redux toolkit state we first of all need to get the returned value from the createSlice() function like this.
+```js
+const counterSlice = createSlice({name... ,initialState... , reducers... })
+```
+2. after that we can use the counterSlice to pass our reducers to the createStore() function like.
+```js
+// in this counterSlice.reducers we get all of the reducers that we have defined while creating that slice.
+const store = createStore(counterSlice.reducer);
+```
+3. but if we use the createStore() function from the redux lib we may end up with some issues when we are dealing with state . thats why we will be using the configureStore()  function (which comes with the redux-toolkit library.) for configuring our store.
+it is versitile to handle multiple state Slices and in each slice we can have many reducer functions.
+what configureStore() does is that it merges all the small small reducers of multiple slices to a bigger reducer and binds it with the store to be used this helps us to split our code between many files and keep out ligic simple to understand while we  config our state store
+```js
+// for single state slice
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+
+// and for multiple state slices
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+```
+
+## 244 : Migrating Everything to redux toolkit
+
+1.
