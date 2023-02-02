@@ -7,7 +7,7 @@ const counterSlice = createSlice({
   // the unique name of the slice as we can have as many slices as we want in an applications.
   name: "counter",
   // this below is the initial state which will be a blueprint for the further states.
-  initState,
+  initialState:initState,
   // this is the object for the reducers which may contain as many reducers as we want.
   reducers: {
     // this is for incrementing the counter state.
@@ -26,48 +26,17 @@ const counterSlice = createSlice({
     // we use the action param and redux toolkit passes that extra data
     // inside the action param.
     increase(state, action) {
-      state.counter = state.counter + action.amount;
+      state.counter = state.counter + action.payload;
     },
     toggle(state) {
       state.showCounter = !state.showCounter;
     },
-  },
+},
 });
-
-const counterReducer = (state = initState, action) => {
-  if (action.type === "increment") {
-    return {
-      ...state,
-      counter: state.counter + 1,
-      //   showCounter: state.showCounter,
-    };
-  }
-  if (action.type === "increase") {
-    return {
-      ...state,
-      counter: state.counter + action.amount,
-      //   showCounter: state.showCounter,
-    };
-  }
-  if (action.type === "decrement") {
-    return {
-      ...state,
-      counter: state.counter - 1,
-      //   showCounter: state.showCounter,
-    };
-  }
-  if (action.type === "toggle") {
-    return {
-      ...state,
-      //   counter: state.counter,
-      showCounter: !state.showCounter,
-    };
-  }
-  return state;
-};
 
 const store = configureStore({
   reducer: counterSlice.reducer,
 });
 
+export const counterActions = counterSlice.actions
 export default store;
