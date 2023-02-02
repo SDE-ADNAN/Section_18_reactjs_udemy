@@ -636,7 +636,7 @@ const counterSlice = createSlice({
   // the unique name of the slice as we can have as many slices as we want in an applications.
   name: "counter",
   // this below is the initial state which will be a blueprint for the further states.
-  initState,
+  initialState:initState,
   // this is the object for the reducers which may contain as many reducers as we want.
   reducers: {
     // this is for incrementing the counter state.
@@ -730,4 +730,22 @@ const store = configureStore({
 
 ## 244 : Migrating Everything to redux toolkit
 
-1.
+1. for dispatching actions we have createSlice function which creates unique identifiers 
+for each and every action method which we define inside the createSlice()'s  reducer's and therefore we are guaranteed that our actions will not clash into one another.
+2.  ```js
+      counterSlice.actions.toogle()
+      // returns an action obj of this shape.
+      {type: "some auto generated unique identifier"} 
+      ``` 
+3. these individual action obj generating unique identifier obj  when called are called action creators 
+   which deal with action creation.
+4.  we can use the ```export const counterActions = counterSlice.actions ``` to export all the action creators inside the counterSlice() and use those action creators inside our component files where we will be dispatching actions to change the redux state.
+5.  for passing some extra data which we in redux call payload , we pass it between the opening and closing paranthesis of the action creator .
+e.g
+```js
+  const increaseHandler = () => {
+    dispatch(counterActions.increase(5)); // here if we need to pass some extra data to the action creator 
+                                          // we pass it inside the calling paranthesis of the actions creator
+                                          // {type:"auto generated unique identifier for increase", payload:5}
+  };
+```
