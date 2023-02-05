@@ -724,7 +724,7 @@ const store = configureStore({
 
 // and for multiple state slices
 const store = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
 });
 ```
 
@@ -749,3 +749,31 @@ e.g
                                           // {type:"auto generated unique identifier for increase", payload:5}
   };
 ```
+
+---
+---
+
+## 245 : Wroking with multiple slices
+
+1. for working with multiple state slices we pass the object form of the reducers to the configureStore function.
+2. like this
+```js 
+const store = configureStore({
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
+});
+```
+3. once we use the multiple stateslices for our store we can now nolonger use the below syntax for extracting data from the redux toolkit store 
+```js
+  const counter = useSelector((state) => state.counter);
+  const showCounter = useSelector((state) => state.showCounter);
+```
+4. now after using multiple stateSlices we will be required to use the below syntax for extracting state data.
+```js
+  const counter = useSelector((state) => state.counter.value);
+  // in this state.counter.value the counter specifies that part/slice name from which we will be extracting the value state.
+  const showCounter = useSelector((state) => state.counter.showCounter);
+```
+for bettter understanding watch the viseo of the course .
+
+---
+---
