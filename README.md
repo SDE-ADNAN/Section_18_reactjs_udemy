@@ -871,3 +871,9 @@ const Header = () => {
 };
 
 export default Header;
+```
+
+## 247. Splitting Our Code
+
+Done code splitting to split all the store slices into individual files 
+
