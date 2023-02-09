@@ -777,3 +777,97 @@ for bettter understanding watch the viseo of the course .
 
 ---
 ---
+
+##  246 : Reading & Dispatching From A New Slice
+
+1. included some code changes for conditional rendering :
+```js
+import { Fragment } from 'react';
+import Auth from './components/Auth';
+import Counter from './components/Counter';
+import Header from './components/Header';
+import { useSelector } from 'react-redux'; //new
+import UserProfile from './components/UserProfile'; //new
+
+
+function App() {
+  const isAuth = useSelector(state=> state.auth.isAuthenticated) //new
+  return (
+    <Fragment>
+      <Header />
+      {!isAuth && <Auth/>} {/* new */}
+      {isAuth && <UserProfile/>} {/* new */}
+      <Counter />
+    </Fragment>
+  );
+}
+
+export default App;
+```
+
+2. added some more code to auth.js
+```js
+import classes from './Auth.module.css';
+import { useDispatch } from 'react-redux'; // new
+import { authActions } from '../store'; // new
+const Auth = () => {
+  const dispatch = useDispatch() //new
+  const loginHandler = (event)=>{ //new
+    event.preventDefault()        // new
+    dispatch(authActions.login()) // new
+  }
+  return (
+    <main className={classes.auth}>
+      <section>
+        <form onSubmit={loginHandler}> {/* new */}
+          <div className={classes.control}>
+            <label htmlFor='email'>Email</label>
+            <input type='email' id='email' />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='password'>Password</label>
+            <input type='password' id='password' />
+          </div>
+          <button>Login</button>
+        </form>
+      </section>
+    </main>
+  );
+};
+```
+
+3. added new code to header .js for logout
+```js
+import classes from './Header.module.css';
+import { useSelector,useDispatch } from 'react-redux'; // new
+import { authActions } from '../store';// new
+
+const Header = () => {
+  const isAuth = useSelector(state=> state.auth.isAuthenticated) //new
+  const dispatch = useDispatch(); //new
+
+  const logoutHandler =()=>{   //new
+    dispatch(authActions.logout())  //new
+  }
+  return (
+    <header className={classes.header}>
+      <h1>Redux Auth</h1>
+      {isAuth && <nav> {/* new */}
+        <ul>
+          <li>
+            <a href='/'>My Products</a>
+          </li>
+          <li>
+            <a href='/'>My Sales</a>
+          </li>
+          <li>
+            <button onClick={logoutHandler}>Logout</button> {/* new */}
+          </li>
+        </ul>
+      </nav>
+      }
+    </header>
+  );
+};
+
+export default Header;
